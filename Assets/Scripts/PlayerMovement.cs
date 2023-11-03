@@ -6,10 +6,13 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
+    public GameObject player;
     public float speed = 12f;
+    public float runspeed = 20f;
     public float gravity = -9.81f * 2;
     public float jumpHeight = 3f;
-
+    public bool isWalking;
+    public bool isRunning;
     public Transform groundCheck;
     public Transform cellingCheck;
     public float groundDistance = 0.4f;
@@ -22,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //checking if we hit the ground to reset our falling velocity, otherwise we will fall faster the next time
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -33,10 +35,33 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        //right is the red Axis, foward is the blue axis
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
+        
+        if (Input.GetKey(KeyCode.W))
+        {
+            isWalking = true;
+        }
+
+        float CurrentEnergy = player.GetComponent<PlayerStatus>().CurrentEnergy;
+        if (Input.GetKey(KeyCode.LeftShift) && isWalking && CurrentEnergy > 0 && isGrounded)
+        {
+            //hold shift to run
+            controller.Move(move * runspeed * Time.deltaTime);
+            isRunning = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            isWalking = false;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift) || !isWalking )
+        {
+            isRunning = false;
+        }
+
 
         //check if the player is on the ground so he can jump
         if (Input.GetButtonDown("Jump") && isGrounded)

@@ -8,6 +8,7 @@ public class EnemiesMovement : MonoBehaviour
     public NavMeshAgent Enemy;
     public Transform Player;
     public bool PlayerInRange = false;
+    public Collider EnemyCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +24,9 @@ public class EnemiesMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider EnemyCollider)
     {
-        if (other.CompareTag("Player"))
+        if (EnemyCollider.CompareTag("Player"))
         {
             PlayerInRange = true;
             
