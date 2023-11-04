@@ -17,6 +17,8 @@ public class PlayerStatus : MonoBehaviour
     public float MaxFood = 2000;
     public float CurrentFood;
     public float MinFood = 0;
+
+    public static PlayerStatus Instance { get; set; }
     void Start()
     {
         CurrentHealth = MaxHealth;
