@@ -17,7 +17,7 @@ public class EnemiesMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   if (Vector3.Distance(Enemy., Player.transform.position)
         if (PlayerInRange)
         {
             Enemy.SetDestination(Player.position);

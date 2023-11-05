@@ -19,13 +19,30 @@ public class PlayerStatus : MonoBehaviour
     public float MinFood = 0;
 
     public static PlayerStatus Instance { get; set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        CurrentHealth -= damage;
+    }
     void Start()
     {
         CurrentHealth = MaxHealth;
         CurrentEnergy = MaxEnergy;
         CurrentFood = MaxFood;
         
-}
+    }
 
     // Update is called once per frame
     void Update()
