@@ -6,3 +6,4 @@ Inventory UI: https://assetstore.unity.com/packages/2d/gui/fantasy-wooden-gui-fr
 Inventory Item Icon: https://assetstore.unity.com/packages/2d/gui/icons/resource-icons-101998
 
 All the assets used just aimed to help demonstrate the game prototype, might be replaced in later development!
+Thanks to: Merak-3 and ZakiM24 which are my group mates
