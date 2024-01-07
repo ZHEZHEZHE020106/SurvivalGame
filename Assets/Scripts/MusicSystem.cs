@@ -7,10 +7,18 @@ public class MusicManager : MonoBehaviour
 {
     
     public static MusicManager Instance { get; set; }
+
+    //BGM
     public AudioSource BGM;
+
+    //Sound Effects
     public AudioSource CraftItemSound;
     public AudioSource AttackSound;
+
+    //BGM volume
     public float Volume = 0.50f;
+
+    //Setting
     public Slider VolumeSlider;
     public void Awake()
     {
@@ -25,6 +33,7 @@ public class MusicManager : MonoBehaviour
 
     }
 
+    
     public void PlayCraftItemSound()
     {
         CraftItemSound.Play();

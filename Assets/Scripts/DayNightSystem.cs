@@ -9,7 +9,9 @@ public class DayNightSystem : MonoBehaviour
 
 
     public Light DirectLight;
-    public float DayDuration = 240.0f; //
+
+    // 1 day in the game is 4 minutes
+    public float DayDuration = 240.0f; 
     public int CurrentHour;
     float CurrentTimeOfDay = 1.0f;
     public int DaySurvived = 0;
@@ -19,12 +21,12 @@ public class DayNightSystem : MonoBehaviour
     
    
 
-    // Update is called once per frame
+    
     void Update()
     {
         CurrentTimeOfDay += Time.deltaTime / DayDuration;
         CurrentTimeOfDay %= 1;
-
+        //for change different sky boxes at different time
         CurrentHour = Mathf.FloorToInt(CurrentTimeOfDay * 24);
         DirectLight.transform.rotation = Quaternion.Euler(new Vector3((CurrentTimeOfDay * 360) - 90, 170, 0));
 
